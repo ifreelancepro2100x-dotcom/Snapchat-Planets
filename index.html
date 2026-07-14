@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snapchat Planets: Complete Guide to the Solar System & Friend Rankings</title>
+<meta name="description" content="Learn how Snapchat Planets work, what each planet means, how rankings are calculated, and how to improve your position in a friend's solar system.">
+<style>
+  :root{
+    --void:#0a0a1f;
+    --deep:#12122e;
+    --panel:#1a1a3a;
+    --sun:#ffd233;
+    --sun-glow:#ffb800;
+    --star:#fffbe6;
+    --ink:#eef0ff;
+    --muted:#a9adcf;
+    --line:rgba(255,255,255,.08);
+    --accent:#7c5cff;
+    --pink:#ff6fae;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--void);
+    color:var(--ink);
+    font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  a{color:var(--pink)}
+  .stars{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+      radial-gradient(1px 1px at 60% 70%, #fff, transparent),
+      radial-gradient(1px 1px at 80% 20%, #fff, transparent),
+      radial-gradient(2px 2px at 40% 80%, #fff, transparent),
+      radial-gradient(1px 1px at 90% 60%, #fff, transparent),
+      radial-gradient(1px 1px at 10% 90%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 35% 15%, #fff, transparent);
+    background-size:100% 100%;
+    opacity:.5;
+    animation:twinkle 6s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle{from{opacity:.3}to{opacity:.7}}
+  .wrap{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 22px}
+
+  /* HERO */
+  header.hero{
+    text-align:center;
+    padding:90px 22px 40px;
+    position:relative;
+    background:radial-gradient(ellipse at 50% 0%, rgba(124,92,255,.22), transparent 60%);
+  }
+  .eyebrow{
+    letter-spacing:.35em;text-transform:uppercase;font-size:.72rem;
+    color:var(--sun);font-weight:700;margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2rem,6vw,3.6rem);
+    font-weight:800;line-height:1.1;letter-spacing:-.02em;
+    background:linear-gradient(120deg,#fff 20%,var(--pink) 60%,var(--accent));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:20px;
+  }
+  .hero p{max-width:620px;margin:0 auto;color:var(--muted);font-size:1.06rem}
+
+  /* SOLAR SYSTEM VISUAL */
+  .system{
+    position:relative;width:min(560px,90vw);height:min(560px,90vw);
+    margin:50px auto 20px;
+  }
+  .sun{
+    position:absolute;top:50%;left:50%;width:64px;height:64px;
+    transform:translate(-50%,-50%);border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,#fff,var(--sun) 45%,var(--sun-glow));
+    box-shadow:0 0 40px 10px rgba(255,184,0,.55);
+    z-index:9;display:grid;place-items:center;font-weight:800;color:#4a3600;font-size:.62rem;
+  }
+  .orbit{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    border:1px solid var(--line);border-radius:50%;
+  }
+  .planet{
+    position:absolute;top:50%;left:0;transform:translate(-50%,-50%);
+    border-radius:50%;display:grid;place-items:center;
+    font-size:.6rem;font-weight:700;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6);
+    cursor:default;
+  }
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes antispin{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+  .o1{width:150px;height:150px;animation:spin 14s linear infinite}
+  .o2{width:210px;height:210px;animation:spin 20s linear infinite}
+  .o3{width:280px;height:280px;animation:spin 27s linear infinite}
+  .o4{width:350px;height:350px;animation:spin 35s linear infinite}
+  .o5{width:415px;height:415px;animation:spin 44s linear infinite}
+  .o6{width:475px;height:475px;animation:spin 54s linear infinite}
+  .o7{width:525px;height:525px;animation:spin 66s linear infinite}
+  .o8{width:560px;height:560px;animation:spin 80s linear infinite}
+  .p{animation:antispin linear infinite}
+  .o1 .p{animation-duration:14s}.o2 .p{animation-duration:20s}.o3 .p{animation-duration:27s}
+  .o4 .p{animation-duration:35s}.o5 .p{animation-duration:44s}.o6 .p{animation-duration:54s}
+  .o7 .p{animation-duration:66s}.o8 .p{animation-duration:80s}
+  .mercury{width:24px;height:24px;background:radial-gradient(circle at 35% 35%,#d9c7b0,#8a7a63)}
+  .venus{width:30px;height:30px;background:radial-gradient(circle at 35% 35%,#ffe0a3,#e0a04d)}
+  .earth{width:32px;height:32px;background:radial-gradient(circle at 35% 35%,#8ecbff,#2f6fd6)}
+  .mars{width:27px;height:27px;background:radial-gradient(circle at 35% 35%,#ff9a76,#c0492b)}
+  .jupiter{width:46px;height:46px;background:radial-gradient(circle at 35% 35%,#f0d3a8,#c08a52)}
+  .saturn{width:40px;height:40px;background:radial-gradient(circle at 35% 35%,#f5e6bf,#c9a76a)}
+  .uranus{width:34px;height:34px;background:radial-gradient(circle at 35% 35%,#c9f5ef,#63b8c9)}
+  .neptune{width:33px;height:33px;background:radial-gradient(circle at 35% 35%,#9db8ff,#3a55c9)}
+
+  /* SECTIONS */
+  section{padding:46px 0}
+  h2{
+    font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;letter-spacing:-.01em;
+    margin-bottom:16px;
+  }
+  h2 .dot{color:var(--sun)}
+  section p{color:var(--muted);margin-bottom:14px}
+  section p strong{color:var(--ink)}
+  .lead{color:var(--ink);font-size:1.08rem}
+
+  .card{
+    background:linear-gradient(180deg,var(--panel),var(--deep));
+    border:1px solid var(--line);border-radius:18px;padding:26px 24px;
+  }
+  ul.plain{list-style:none;display:grid;gap:10px;margin:6px 0}
+  ul.plain li{
+    padding-left:26px;position:relative;color:var(--muted);
+  }
+  ul.plain li::before{
+    content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;
+    border-radius:50%;background:var(--sun);box-shadow:0 0 8px var(--sun-glow);
+  }
+
+  /* RANKING GRID */
+  .ranks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:26px}
+  .rank{
+    background:linear-gradient(180deg,var(--panel),var(--deep));
+    border:1px solid var(--line);border-radius:16px;padding:20px;
+    transition:transform .25s ease,border-color .25s ease;
+  }
+  .rank:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .rank .head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .rank .orb{width:34px;height:34px;border-radius:50%;flex:none}
+  .rank h3{font-size:1.05rem;font-weight:800}
+  .rank .badge{
+    font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--sun);font-weight:700;display:block;margin-top:2px;
+  }
+  .rank p{font-size:.92rem;color:var(--muted);margin:0}
+
+  /* CTA */
+  .cta{
+    text-align:center;margin:20px 0;padding:34px 24px;border-radius:20px;
+    background:radial-gradient(ellipse at 50% 0%,rgba(255,111,174,.18),transparent 70%),
+               linear-gradient(180deg,var(--panel),var(--deep));
+    border:1px solid var(--line);
+  }
+  .btn{
+    display:inline-block;margin:8px 6px;padding:13px 26px;border-radius:999px;
+    font-weight:700;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .btn-sun{background:linear-gradient(120deg,var(--sun),var(--sun-glow));color:#3a2a00;
+    box-shadow:0 8px 24px rgba(255,184,0,.3)}
+  .btn-ghost{border:1px solid var(--accent);color:var(--ink);background:rgba(124,92,255,.12)}
+  .btn:hover{transform:translateY(-3px)}
+
+  footer{
+    text-align:center;padding:40px 22px 60px;color:var(--muted);font-size:.86rem;
+    border-top:1px solid var(--line);margin-top:20px;
+  }
+  footer a{font-weight:600}
+
+  @media (max-width:520px){
+    .rank .orb{width:28px;height:28px}
+    .hero{padding-top:64px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .stars,.o1,.o2,.o3,.o4,.o5,.o6,.o7,.o8,.p{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<header class="hero">
+  <div class="eyebrow">Snapchat Plus · Friend Solar System</div>
+  <h1>Snapchat Planets: Your Complete Guide</h1>
+  <p>Ever spotted a colorful planet next to a friend's name and wondered what it means? Here's how the <a href="https://snapchatplanetss.com">Snapchat Planets</a> feature turns your closest friendships into a solar system.</p>
+
+  <div class="system" aria-hidden="true">
+    <div class="orbit o8"><div class="planet p neptune">N</div></div>
+    <div class="orbit o7"><div class="planet p uranus">U</div></div>
+    <div class="orbit o6"><div class="planet p saturn">S</div></div>
+    <div class="orbit o5"><div class="planet p jupiter">J</div></div>
+    <div class="orbit o4"><div class="planet p mars">Ma</div></div>
+    <div class="orbit o3"><div class="planet p earth">E</div></div>
+    <div class="orbit o2"><div class="planet p venus">V</div></div>
+    <div class="orbit o1"><div class="planet p mercury">Me</div></div>
+    <div class="sun">SUN</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>What Are Snapchat Planets<span class="dot">?</span></h2>
+    <p class="lead">Snapchat Planets are part of the Snapchat Plus subscription. This premium feature uses our solar system to show where you rank among a friend's Best Friends.</p>
+    <p>Think of yourself as a planet orbiting your friend, who represents the Sun. The closer your planet sits to the Sun, the stronger your friendship. There are eight planets in total, and each one corresponds to a specific Best Friend ranking.</p>
+    <p>Unlike public follower counts or visible friend lists on other platforms, Snapchat Planets give you a private, playful way to visualize how much you interact with the people you talk to most.</p>
+  </section>
+
+  <section>
+    <h2>How Does the Solar System Work<span class="dot">?</span></h2>
+    <div class="card">
+      <p style="color:var(--ink)">Your position is based on your <strong>recent interactions</strong> with another user, including:</p>
+      <ul class="plain">
+        <li>Sending and receiving Snaps</li>
+        <li>Chat conversations</li>
+        <li>Replying to Stories</li>
+        <li>Sharing content</li>
+        <li>Maintaining Snapstreaks</li>
+        <li>Overall communication frequency</li>
+      </ul>
+    </div>
+    <p style="margin-top:18px">The more consistently you interact, the closer your planet moves toward the Sun. If you're someone's <strong>Mercury</strong>, you're their closest Best Friend. Shift to Venus or Earth and it usually means another friend has become more active lately.</p>
+    <p>Remember: these rankings are <strong>dynamic</strong>. They change as communication patterns change over time.</p>
+  </section>
+
+  <section>
+    <h2>Do You Need Snapchat Plus<span class="dot">?</span></h2>
+    <p><strong>Yes.</strong> Snapchat Planets are available exclusively through Snapchat Plus, the platform's premium subscription.</p>
+    <p>Without it, you can still have Best Friends, keep Snapstreaks, and enjoy the standard experience — but you won't see the Solar System or your planetary ranking. The Friend Solar System is just one of several exclusive perks that make Snapchat Plus popular with users who love extra personalization.</p>
+  </section>
+
+  <section>
+    <h2>Snapchat Planets in Order</h2>
+    <p>The Solar System follows the same order as the real one. Each planet represents a different friendship rank — here are the first four positions.</p>
+    <div class="ranks">
+      <div class="rank">
+        <div class="head">
+          <span class="orb mercury"></span>
+          <div><h3>Mercury</h3><span class="badge">#1 Best Friend</span></div>
+        </div>
+        <p>The closest planet to the Sun — the highest ranking. You're their number one, exchanging Snaps and chatting more than anyone else.</p>
+      </div>
+      <div class="rank">
+        <div class="head">
+          <span class="orb venus"></span>
+          <div><h3>Venus</h3><span class="badge">#2 Best Friend</span></div>
+        </div>
+        <p>The second closest friendship. Still one of their strongest connections, but someone else edges you out slightly on recent activity.</p>
+      </div>
+      <div class="rank">
+        <div class="head">
+          <span class="orb earth"></span>
+          <div><h3>Earth</h3><span class="badge">#3 Best Friend</span></div>
+        </div>
+        <p>Consistently active together. You trade messages and Snaps regularly, just a touch less than Mercury and Venus.</p>
+      </div>
+      <div class="rank">
+        <div class="head">
+          <span class="orb mars"></span>
+          <div><h3>Mars</h3><span class="badge">#4 Best Friend</span></div>
+        </div>
+        <p>A solid, active friendship. You're among their closest contacts — regular chats and Snap exchanges keep this spot secure.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta">
+      <h2 style="margin-bottom:10px">Find Your Place in the Solar System</h2>
+      <p style="max-width:520px;margin:0 auto 18px">Dive deeper into every planet, ranking tips, and how to climb toward Mercury.</p>
+      <a class="btn btn-sun" href="https://snapchatplanetss.com">Explore Snapchat Planets</a>
+      <a class="btn btn-ghost" href="http://snapchat-planet.s3-website.eu-north-1.amazonaws.com/">See the Full Planet Guide</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>A complete guide to the Snapchat solar system and friend rankings.</p>
+  <p style="margin-top:8px">Learn more at <a href="https://snapchatplanetss.com">Snapchat Planets</a> · <a href="http://snapchat-planet.s3-website.eu-north-1.amazonaws.com/">Planet Guide</a></p>
+</footer>
+
+</body>
+</html>
